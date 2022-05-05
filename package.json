@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "lerna-testing",
   "private": true,
   "scripts": {
     "start": "cd ./packages/usage && npm start"
