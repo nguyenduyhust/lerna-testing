@@ -1,5 +1,5 @@
 {
-  "name": "lerna-testing-alpha",
+  "name": "lerna-testing-beta",
   "version": "0.0.3",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "beta": "^0.0.2"
+    "lerna-testing-alpha": "^0.0.3"
   }
 }
