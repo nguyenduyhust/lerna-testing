@@ -2,6 +2,7 @@
   "name": "lerna-testing-usage",
   "version": "0.0.4",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js"
