@@ -1,6 +1,6 @@
 {
   "name": "lerna-testing-beta",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "private": true,
   "main": "index.js",
@@ -9,7 +9,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-  }
+  "license": "ISC"
 }
