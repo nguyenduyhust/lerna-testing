@@ -11,6 +11,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lerna-testing-alpha": "^0.0.5"
   }
 }
