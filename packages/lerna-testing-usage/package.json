@@ -1,6 +1,6 @@
 {
   "name": "lerna-testing-usage",
-  "version": "0.0.7-alpha.0",
+  "version": "0.0.7",
   "description": "",
   "private": true,
   "main": "index.js",
@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lerna-testing-alpha": "^0.0.7-alpha.0",
-    "lerna-testing-beta": "^0.0.6",
+    "lerna-testing-alpha": "^0.0.7",
+    "lerna-testing-beta": "^0.0.7",
     "react": "^18.1.0"
   }
 }
