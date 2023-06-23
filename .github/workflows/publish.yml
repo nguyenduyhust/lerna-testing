@@ -82,7 +82,7 @@ jobs:
           BUMP='${{ inputs.bump }}'
           if [ ${{ inputs.bump }} == graduate ]; then BUMP='--conventional-commits --conventional-graduate --no-changelog'; fi
           if [ ${{ inputs.bump }} == change-build-metadata ]; then BUMP=$(git describe --tags --abbrev=0); fi
-          npm run lerna -- version ${{ inputs.bump }} --preid ${{ inputs.preid }} --build-metadata ${{ inputs.build-metadata }} $FORCE -y
+          npm run lerna -- version $BUMP --preid ${{ inputs.preid }} --build-metadata ${{ inputs.build-metadata }} $FORCE -y
       - name: "Publish"
         if: ${{ inputs.publish_npm == true }}
         run: npm run lerna -- publish from-git -y
