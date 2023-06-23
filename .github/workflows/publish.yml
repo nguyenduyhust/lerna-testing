@@ -17,7 +17,7 @@ on:
           - prepatch
           - prerelease
           - graduate
-          - change-build-metadata
+          - build-metadata
       preid:
         description: 'Prerelease identifier'
         required: true
@@ -81,7 +81,7 @@ jobs:
           if [ ${{ inputs.force }} == true ]; then FORCE='--force-publish'; else FORCE=''; fi
           BUMP='${{ inputs.bump }}'
           if [ ${{ inputs.bump }} == graduate ]; then BUMP='--conventional-commits --conventional-graduate --no-changelog'; fi
-          if [ ${{ inputs.bump }} == change-build-metadata ]; then BUMP=$(git describe --tags --abbrev=0); fi
+          if [ ${{ inputs.bump }} == build-metadata ]; then BUMP=$(git describe --tags --abbrev=0); fi
           npm run lerna -- version $BUMP --preid ${{ inputs.preid }} --build-metadata ${{ inputs.build-metadata }} $FORCE -y
       - name: "Publish"
         if: ${{ inputs.publish_npm == true }}
