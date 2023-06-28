@@ -1,6 +1,6 @@
 {
   "name": "lerna-testing-alpha",
-  "version": "0.0.8-alpha.1+0",
+  "version": "0.0.8-alpha.2+0",
   "description": "Lerna testing alpha",
   "private": true,
   "main": "index.js",
