@@ -52,7 +52,7 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_PACKAGE_TOKEN }}
 
 jobs:
-  lerna-publish:
+  publish-version:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -83,7 +83,13 @@ jobs:
           if [ ${{ inputs.bump }} == graduate ]; then BUMP='--conventional-commits --conventional-graduate --no-changelog'; fi
           if [ ${{ inputs.bump }} == build-metadata ]; then BUMP=$(git describe --tags --abbrev=0); fi
           npm run lerna -- version $BUMP --preid ${{ inputs.preid }} --build-metadata ${{ inputs.build-metadata }} $FORCE -y
-          git describe --tags
+          echo "version=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
       - name: "Publish"
         if: ${{ inputs.publish_npm == true }}
         run: npm run lerna -- publish from-git -y
+  
+  create-release:
+    needs: publish-version
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.publish-version.outputs.version }}
