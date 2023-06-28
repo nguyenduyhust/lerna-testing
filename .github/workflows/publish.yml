@@ -83,7 +83,8 @@ jobs:
           if [ ${{ inputs.bump }} == graduate ]; then BUMP='--conventional-commits --conventional-graduate --no-changelog'; fi
           if [ ${{ inputs.bump }} == build-metadata ]; then BUMP=$(git describe --tags --abbrev=0); fi
           npm run lerna -- version $BUMP --preid ${{ inputs.preid }} --build-metadata ${{ inputs.build-metadata }} $FORCE -y
-          echo "version=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+          git describe --tags --abbrev=0
+          echo "VERSION=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
       - name: "Publish"
         if: ${{ inputs.publish_npm == true }}
         run: npm run lerna -- publish from-git -y
@@ -92,4 +93,5 @@ jobs:
     needs: publish-version
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.publish-version.outputs.version }}
+      - run: echo ${{ needs.publish-version.outputs.VERSION }}
+      - run: echo ${{ needs.publish-version.outputs.putput1 }}
