@@ -94,7 +94,7 @@ jobs:
     steps:
       - name: publish
         id: publish
-        run: echo "name=v1.0.0" >> "$GITHUB_OUTPUT"
+        run: echo "name=v1.0.0" >> "$GITHUB_ENV"
     outputs:
       name: ${{ steps.publish.outputs.name }}
   
@@ -102,5 +102,4 @@ jobs:
     needs: publish-version
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ needs.publish-version.outputs.name }}"
-      - run: echo "${{ needs.publish-version.outputs.output1 }}"
+      - run: echo "${{ env.name }}"
