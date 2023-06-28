@@ -93,5 +93,5 @@ jobs:
     needs: publish-version
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.publish-version.outputs.VERSION }}
-      - run: echo ${{ needs.publish-version.outputs.putput1 }}
+      - run: echo "${{ needs.publish-version.outputs.VERSION }}"
+      - run: echo "${{ needs.publish-version.outputs.putput1 }}"
