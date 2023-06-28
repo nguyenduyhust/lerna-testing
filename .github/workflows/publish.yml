@@ -93,6 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: publish
+        id: publish
         run: echo "name=v1.0.0" >> "$GITHUB_OUTPUT"
     outputs:
       name: ${{ steps.publish.outputs.name }}
