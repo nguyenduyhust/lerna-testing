@@ -92,11 +92,11 @@ jobs:
   publish-version:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "VERSION=v1.0.0" >> "$GITHUB_OUTPUT"
+      - run: echo "name=v1.0.0" >> "$GITHUB_OUTPUT"
   
   create-release:
     needs: publish-version
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ needs.publish-version.outputs.VERSION }}"
-      - run: echo "${{ needs.publish-version.outputs.putput1 }}"
+      - run: echo "${{ needs.publish-version.outputs.name }}"
+      - run: echo "${{ needs.publish-version.outputs.output1 }}"
