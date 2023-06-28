@@ -80,14 +80,17 @@ jobs:
           git config user.email ${{ github.actor }}@users.noreply.github.com
           npm run lerna -- version prerelease --force-publish --yes
           git describe --tags --abbrev=0
+          echo "version=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"  
         # if [ ${{ inputs.force }} == true ]; then FORCE='--force-publish'; else FORCE=''; fi
         # BUMP='${{ inputs.bump }}'
         # if [ ${{ inputs.bump }} == graduate ]; then BUMP='--conventional-commits --conventional-graduate --no-changelog'; fi
         # if [ ${{ inputs.bump }} == build-metadata ]; then BUMP=$(git describe --tags --abbrev=0); fi
         # npm run lerna -- version $BUMP --preid ${{ inputs.preid }} --build-metadata ${{ inputs.build-metadata }} $FORCE -y
-      - name: "Publish"
-        if: ${{ inputs.publish_npm == true }}
-        run: npm run lerna -- publish from-git -y
+      # - name: "Publish"
+      #   if: ${{ inputs.publish_npm == true }}
+      #   run: npm run lerna -- publish from-git -y
+    outputs:
+      version: ${{ steps.create-version.outputs.version }}
 
   # publish-version:
   #   runs-on: ubuntu-latest
@@ -98,8 +101,18 @@ jobs:
   #   outputs:
   #     name: ${{ steps.publish.outputs.name }}
   
-  # create-release:
-  #   needs: publish-version
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - run: echo "${{ env.name }}"
+  test-1:
+    needs: publish-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: git describe
+
+  test-2:
+    needs: publish-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.publish-version.outputs.version }}
+      - run: git describe
