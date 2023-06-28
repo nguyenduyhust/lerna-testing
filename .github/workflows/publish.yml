@@ -92,7 +92,10 @@ jobs:
   publish-version:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "name=v1.0.0" >> "$GITHUB_OUTPUT"
+      - name: publish
+        run: echo "name=v1.0.0" >> "$GITHUB_OUTPUT"
+    outputs:
+      name: ${{ steps.publish.outputs.name }}
   
   create-release:
     needs: publish-version
